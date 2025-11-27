@@ -124,6 +124,32 @@ const Index = () => {
               <p className="text-xl text-white/90">
                 Комфортные поездки с заботой о вас. Работаем 24/7 для вашего удобства.
               </p>
+
+              <div className="pt-4">
+                <p className="text-white/90 mb-4 font-medium text-center">Скачайте наше приложение</p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center gap-3 bg-black hover:bg-black/80 text-white px-6 py-3 rounded-xl transition-all hover:scale-105"
+                  >
+                    <Icon name="Apple" size={28} />
+                    <div className="text-left">
+                      <div className="text-xs">Загрузите в</div>
+                      <div className="text-lg font-semibold">App Store</div>
+                    </div>
+                  </a>
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center gap-3 bg-black hover:bg-black/80 text-white px-6 py-3 rounded-xl transition-all hover:scale-105"
+                  >
+                    <Icon name="Smartphone" size={28} />
+                    <div className="text-left">
+                      <div className="text-xs">Доступно в</div>
+                      <div className="text-lg font-semibold">Google Play</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
               
               <Card className="border-2 border-primary/20">
                 <CardContent className="p-4">
@@ -358,31 +384,7 @@ const Index = () => {
                 </Button>
               </div>
               
-              <div className="pt-8 border-t border-white/20">
-                <p className="text-white/90 mb-4 font-medium">Скачайте наше приложение</p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <a 
-                    href="#" 
-                    className="inline-flex items-center gap-3 bg-black hover:bg-black/80 text-white px-6 py-3 rounded-xl transition-all hover:scale-105"
-                  >
-                    <Icon name="Apple" size={28} />
-                    <div className="text-left">
-                      <div className="text-xs">Загрузите в</div>
-                      <div className="text-lg font-semibold">App Store</div>
-                    </div>
-                  </a>
-                  <a 
-                    href="#" 
-                    className="inline-flex items-center gap-3 bg-black hover:bg-black/80 text-white px-6 py-3 rounded-xl transition-all hover:scale-105"
-                  >
-                    <Icon name="Smartphone" size={28} />
-                    <div className="text-left">
-                      <div className="text-xs">Доступно в</div>
-                      <div className="text-lg font-semibold">Google Play</div>
-                    </div>
-                  </a>
-                </div>
-              </div>
+
             </CardContent>
           </Card>
         </div>
