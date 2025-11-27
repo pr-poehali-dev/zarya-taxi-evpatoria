@@ -10,6 +10,9 @@ const Index = () => {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [phone, setPhone] = useState('');
+  const [selectedTariff, setSelectedTariff] = useState('Комфорт');
+  const [distance, setDistance] = useState(5);
+  const [calculatedPrice, setCalculatedPrice] = useState(250);
 
   const handleOrder = () => {
     if (!from || !to || !phone) {
@@ -26,7 +29,8 @@ const Index = () => {
     {
       name: 'Эконом',
       icon: 'Car',
-      price: '150',
+      basePrice: 100,
+      pricePerKm: 25,
       features: ['Седан или хэтчбек', 'До 3 пассажиров', 'Кондиционер'],
       color: 'bg-secondary',
       popular: false
@@ -34,7 +38,8 @@ const Index = () => {
     {
       name: 'Комфорт',
       icon: 'Car',
-      price: '250',
+      basePrice: 150,
+      pricePerKm: 35,
       features: ['Комфортный седан', 'До 4 пассажиров', 'Премиум салон', 'Детское кресло'],
       color: 'bg-primary',
       popular: true
@@ -42,12 +47,29 @@ const Index = () => {
     {
       name: 'Минивэн',
       icon: 'Bus',
-      price: '400',
+      basePrice: 250,
+      pricePerKm: 50,
       features: ['Вместительный минивэн', 'До 7 пассажиров', 'Большой багажник', 'Комфорт класс'],
       color: 'bg-accent',
       popular: false
     }
   ];
+
+  const calculatePrice = (tariffName: string, dist: number) => {
+    const tariff = tariffs.find(t => t.name === tariffName);
+    if (!tariff) return 0;
+    return tariff.basePrice + (tariff.pricePerKm * dist);
+  };
+
+  const handleTariffChange = (tariffName: string) => {
+    setSelectedTariff(tariffName);
+    setCalculatedPrice(calculatePrice(tariffName, distance));
+  };
+
+  const handleDistanceChange = (dist: number) => {
+    setDistance(dist);
+    setCalculatedPrice(calculatePrice(selectedTariff, dist));
+  };
 
   const advantages = [
     { icon: 'Clock', title: 'Быстрая подача', text: 'Среднее время подачи 5 минут' },
@@ -128,6 +150,56 @@ const Index = () => {
                 <CardDescription>Заполните данные, и водитель приедет через 5 минут</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
+                <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
+                  <CardContent className="pt-4 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium">Калькулятор стоимости</span>
+                      <Icon name="Calculator" size={18} className="text-primary" />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Тариф</label>
+                      <div className="grid grid-cols-3 gap-2">
+                        {tariffs.map((tariff) => (
+                          <Button
+                            key={tariff.name}
+                            variant={selectedTariff === tariff.name ? 'default' : 'outline'}
+                            size="sm"
+                            onClick={() => handleTariffChange(tariff.name)}
+                            className="text-xs"
+                          >
+                            {tariff.name}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <label className="text-sm font-medium">Расстояние</label>
+                        <span className="text-sm font-bold text-primary">{distance} км</span>
+                      </div>
+                      <input
+                        type="range"
+                        min="1"
+                        max="30"
+                        value={distance}
+                        onChange={(e) => handleDistanceChange(Number(e.target.value))}
+                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+                      />
+                      <div className="flex justify-between text-xs text-muted-foreground">
+                        <span>1 км</span>
+                        <span>30 км</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-3 border-t flex justify-between items-center">
+                      <span className="text-sm font-medium">Примерная стоимость:</span>
+                      <span className="text-3xl font-bold text-primary">{calculatedPrice} ₽</span>
+                    </div>
+                  </CardContent>
+                </Card>
+
                 <div className="space-y-2">
                   <label className="text-sm font-medium flex items-center gap-2">
                     <Icon name="MapPin" size={16} className="text-primary" />
@@ -170,7 +242,7 @@ const Index = () => {
                   size="lg"
                 >
                   <Icon name="Car" size={20} className="mr-2" />
-                  Заказать такси
+                  Заказать за {calculatedPrice} ₽
                 </Button>
               </CardContent>
             </Card>
@@ -205,9 +277,14 @@ const Index = () => {
                     <Icon name={tariff.icon as any} size={32} className="text-white" />
                   </div>
                   <CardTitle className="text-2xl">{tariff.name}</CardTitle>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-bold">{tariff.price}</span>
-                    <span className="text-muted-foreground">₽</span>
+                  <div className="space-y-1">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl font-bold">{tariff.basePrice}</span>
+                      <span className="text-muted-foreground text-sm">₽ базовая</span>
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      + {tariff.pricePerKm} ₽/км
+                    </div>
                   </div>
                 </CardHeader>
                 <CardContent>
