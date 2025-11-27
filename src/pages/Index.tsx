@@ -86,8 +86,8 @@ const Index = () => {
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
               <Icon name="Sunrise" className="text-white" size={24} />
             </div>
-            <span className="text-2xl font-bold text-white">
-              Заря
+            <span className="text-4xl font-bold text-black">
+              ЗАРЯ
             </span>
           </div>
           <nav className="hidden md:flex gap-8">
