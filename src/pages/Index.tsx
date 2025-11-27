@@ -139,13 +139,15 @@ const Index = () => {
                     </div>
                   </a>
                   <a 
-                    href="#" 
+                    href="https://www.rustore.ru/catalog/app/uptaxi.all" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 bg-black hover:bg-black/80 text-white px-6 py-3 rounded-xl transition-all hover:scale-105"
                   >
                     <Icon name="Smartphone" size={28} />
                     <div className="text-left">
                       <div className="text-xs">Доступно в</div>
-                      <div className="text-lg font-semibold">Google Play</div>
+                      <div className="text-lg font-semibold">RuStore</div>
                     </div>
                   </a>
                 </div>
