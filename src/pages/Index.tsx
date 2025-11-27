@@ -88,7 +88,7 @@ const Index = () => {
 
       <section id="order" className="pt-32 pb-20 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div className="space-y-6 animate-fade-in">
               <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-1">
                 🚀 Такси №1 в Евпатории
@@ -102,6 +102,24 @@ const Index = () => {
               <p className="text-xl text-muted-foreground">
                 Комфортные поездки с заботой о вас. Работаем 24/7 для вашего удобства.
               </p>
+              
+              <Card className="border-2 border-primary/20">
+                <CardContent className="p-4">
+                  <div className="aspect-video w-full bg-gradient-to-br from-blue-100 to-orange-50 rounded-lg overflow-hidden relative">
+                    <iframe
+                      src="https://yandex.ru/map-widget/v1/?ll=33.366667,45.193889&z=13&l=map"
+                      width="100%"
+                      height="100%"
+                      frameBorder="0"
+                      className="absolute inset-0"
+                      allowFullScreen
+                    />
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-2 text-center">
+                    📍 Работаем по всей Евпатории и окрестностям
+                  </p>
+                </CardContent>
+              </Card>
             </div>
 
             <Card className="shadow-2xl border-2 animate-slide-up">
