@@ -103,7 +103,7 @@ const Index = () => {
           </nav>
           <Button 
             className="hidden md:flex gap-2 bg-white text-red-600 hover:bg-yellow-300"
-            onClick={() => window.open('https://t.me/yourusername', '_blank')}
+            onClick={() => window.open('https://t.me/zarya_taxi', '_blank')}
           >
             <Icon name="Send" size={18} />
             Telegram
