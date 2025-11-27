@@ -38,8 +38,8 @@ const Index = () => {
     {
       name: 'Комфорт',
       icon: 'Car',
-      basePrice: 150,
-      pricePerKm: 35,
+      basePrice: 140,
+      pricePerKm: 18,
       features: ['Комфортный седан', 'До 4 пассажиров', 'Премиум салон', 'Детское кресло'],
       color: 'bg-primary',
       popular: true
