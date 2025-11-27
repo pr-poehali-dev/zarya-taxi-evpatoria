@@ -1,12 +1,295 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import Icon from '@/components/ui/icon';
+import { toast } from 'sonner';
 
 const Index = () => {
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const handleOrder = () => {
+    if (!from || !to || !phone) {
+      toast.error('Заполните все поля');
+      return;
+    }
+    toast.success('Заказ принят! Водитель прибудет через 5 минут');
+    setFrom('');
+    setTo('');
+    setPhone('');
+  };
+
+  const tariffs = [
+    {
+      name: 'Эконом',
+      icon: 'Car',
+      price: '150',
+      features: ['Седан или хэтчбек', 'До 3 пассажиров', 'Кондиционер'],
+      color: 'bg-secondary',
+      popular: false
+    },
+    {
+      name: 'Комфорт',
+      icon: 'Car',
+      price: '250',
+      features: ['Комфортный седан', 'До 4 пассажиров', 'Премиум салон', 'Детское кресло'],
+      color: 'bg-primary',
+      popular: true
+    },
+    {
+      name: 'Минивэн',
+      icon: 'Bus',
+      price: '400',
+      features: ['Вместительный минивэн', 'До 7 пассажиров', 'Большой багажник', 'Комфорт класс'],
+      color: 'bg-accent',
+      popular: false
+    }
+  ];
+
+  const advantages = [
+    { icon: 'Clock', title: 'Быстрая подача', text: 'Среднее время подачи 5 минут' },
+    { icon: 'Shield', title: 'Безопасность', text: 'Проверенные водители с лицензией' },
+    { icon: 'CreditCard', title: 'Удобная оплата', text: 'Наличные или карта в приложении' },
+    { icon: 'Star', title: 'Высокий рейтинг', text: '4.9 звёзд по отзывам клиентов' }
+  ];
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-b from-background via-orange-50/30 to-blue-50/30">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 border-b">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+              <Icon name="Sunrise" className="text-white" size={24} />
+            </div>
+            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Заря
+            </span>
+          </div>
+          <nav className="hidden md:flex gap-8">
+            <a href="#order" className="text-foreground hover:text-primary transition-colors font-medium">
+              Заказать
+            </a>
+            <a href="#tariffs" className="text-foreground hover:text-primary transition-colors font-medium">
+              Тарифы
+            </a>
+            <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium">
+              О нас
+            </a>
+          </nav>
+          <Button className="hidden md:flex gap-2">
+            <Icon name="Phone" size={18} />
+            +7 (978) 123-45-67
+          </Button>
+        </div>
+      </header>
+
+      <section id="order" className="pt-32 pb-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6 animate-fade-in">
+              <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-1">
+                🚀 Такси №1 в Евпатории
+              </Badge>
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+                Быстрое такси
+                <span className="block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  по всему городу
+                </span>
+              </h1>
+              <p className="text-xl text-muted-foreground">
+                Комфортные поездки с заботой о вас. Работаем 24/7 для вашего удобства.
+              </p>
+            </div>
+
+            <Card className="shadow-2xl border-2 animate-slide-up">
+              <CardHeader>
+                <CardTitle className="text-2xl">Заказать такси</CardTitle>
+                <CardDescription>Заполните данные, и водитель приедет через 5 минут</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <Icon name="MapPin" size={16} className="text-primary" />
+                    Откуда
+                  </label>
+                  <Input
+                    placeholder="Улица, дом"
+                    value={from}
+                    onChange={(e) => setFrom(e.target.value)}
+                    className="border-2"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <Icon name="MapPinCheck" size={16} className="text-secondary" />
+                    Куда
+                  </label>
+                  <Input
+                    placeholder="Адрес назначения"
+                    value={to}
+                    onChange={(e) => setTo(e.target.value)}
+                    className="border-2"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <Icon name="Phone" size={16} className="text-primary" />
+                    Телефон
+                  </label>
+                  <Input
+                    placeholder="+7 (___) ___-__-__"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="border-2"
+                  />
+                </div>
+                <Button
+                  onClick={handleOrder}
+                  className="w-full h-12 text-lg font-semibold animate-pulse-glow"
+                  size="lg"
+                >
+                  <Icon name="Car" size={20} className="mr-2" />
+                  Заказать такси
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section id="tariffs" className="py-20 px-4 bg-gradient-to-b from-white/50 to-transparent">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center space-y-4 mb-12">
+            <Badge className="bg-secondary/10 text-secondary border-secondary/20">Тарифы</Badge>
+            <h2 className="text-4xl md:text-5xl font-bold">Выберите свой класс</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Цены указаны за поездку по городу. Для междугородних поездок действуют специальные тарифы
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {tariffs.map((tariff, index) => (
+              <Card
+                key={index}
+                className={`relative overflow-hidden transition-all hover:scale-105 hover:shadow-xl ${
+                  tariff.popular ? 'border-primary border-2 shadow-lg' : ''
+                }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {tariff.popular && (
+                  <Badge className="absolute top-4 right-4 bg-primary">Популярный</Badge>
+                )}
+                <CardHeader>
+                  <div className={`w-16 h-16 rounded-2xl ${tariff.color} flex items-center justify-center mb-4`}>
+                    <Icon name={tariff.icon as any} size={32} className="text-white" />
+                  </div>
+                  <CardTitle className="text-2xl">{tariff.name}</CardTitle>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl font-bold">{tariff.price}</span>
+                    <span className="text-muted-foreground">₽</span>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    {tariff.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <Icon name="Check" size={18} className="text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    variant={tariff.popular ? 'default' : 'outline'}
+                    className="w-full mt-6"
+                    onClick={() => {
+                      document.getElementById('order')?.scrollIntoView({ behavior: 'smooth' });
+                      toast.success(`Выбран тариф: ${tariff.name}`);
+                    }}
+                  >
+                    Выбрать
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center space-y-4 mb-12">
+            <Badge className="bg-primary/10 text-primary border-primary/20">О компании</Badge>
+            <h2 className="text-4xl md:text-5xl font-bold">Почему выбирают нас</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {advantages.map((advantage, index) => (
+              <Card
+                key={index}
+                className="text-center hover:shadow-lg transition-shadow"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <CardHeader>
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary mx-auto flex items-center justify-center mb-4">
+                    <Icon name={advantage.icon as any} size={28} className="text-white" />
+                  </div>
+                  <CardTitle className="text-xl">{advantage.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{advantage.text}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="mt-12 bg-gradient-to-r from-primary to-secondary text-white border-0">
+            <CardContent className="py-12 text-center space-y-4">
+              <h3 className="text-3xl font-bold">Работаем для вас 24/7</h3>
+              <p className="text-lg text-white/90 max-w-2xl mx-auto">
+                Такси 'Заря' — это надёжный сервис в Евпатории. Мы работаем круглосуточно, 
+                чтобы вы всегда могли быстро добраться до нужного места.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                <Button size="lg" variant="secondary" className="gap-2">
+                  <Icon name="Phone" size={20} />
+                  Позвонить сейчас
+                </Button>
+                <Button size="lg" variant="outline" className="gap-2 bg-white/10 border-white/30 text-white hover:bg-white/20">
+                  <Icon name="MessageCircle" size={20} />
+                  Написать в Telegram
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <footer className="py-8 px-4 border-t bg-white/50 backdrop-blur">
+        <div className="container mx-auto max-w-6xl">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                <Icon name="Sunrise" className="text-white" size={18} />
+              </div>
+              <span className="font-bold text-lg">Заря Такси</span>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              © 2024 Такси Заря. Евпатория, Крым
+            </p>
+            <div className="flex gap-4">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Icon name="Instagram" size={20} />
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Icon name="Phone" size={20} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
