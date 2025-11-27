@@ -29,8 +29,8 @@ const Index = () => {
     {
       name: 'Эконом',
       icon: 'Car',
-      basePrice: 100,
-      pricePerKm: 25,
+      basePrice: 80,
+      pricePerKm: 12,
       features: ['Седан или хэтчбек', 'До 3 пассажиров', 'Кондиционер'],
       color: 'bg-secondary',
       popular: false
