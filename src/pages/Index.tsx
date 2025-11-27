@@ -101,9 +101,12 @@ const Index = () => {
               О нас
             </a>
           </nav>
-          <Button className="hidden md:flex gap-2 bg-white text-red-600 hover:bg-yellow-300">
-            <Icon name="Phone" size={18} />
-            +7 (978) 123-45-67
+          <Button 
+            className="hidden md:flex gap-2 bg-white text-red-600 hover:bg-yellow-300"
+            onClick={() => window.open('https://t.me/yourusername', '_blank')}
+          >
+            <Icon name="Send" size={18} />
+            Telegram
           </Button>
         </div>
       </header>
