@@ -341,7 +341,7 @@ const Index = () => {
           </div>
 
           <Card className="mt-12 bg-gradient-to-r from-primary to-secondary text-white border-0">
-            <CardContent className="py-12 text-center space-y-4">
+            <CardContent className="py-12 text-center space-y-6">
               <h3 className="text-3xl font-bold">Работаем для вас 24/7</h3>
               <p className="text-lg text-white/90 max-w-2xl mx-auto">
                 Такси 'Заря' — это надёжный сервис в Евпатории. Мы работаем круглосуточно, 
@@ -356,6 +356,32 @@ const Index = () => {
                   <Icon name="MessageCircle" size={20} />
                   Написать в Telegram
                 </Button>
+              </div>
+              
+              <div className="pt-8 border-t border-white/20">
+                <p className="text-white/90 mb-4 font-medium">Скачайте наше приложение</p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center gap-3 bg-black hover:bg-black/80 text-white px-6 py-3 rounded-xl transition-all hover:scale-105"
+                  >
+                    <Icon name="Apple" size={28} />
+                    <div className="text-left">
+                      <div className="text-xs">Загрузите в</div>
+                      <div className="text-lg font-semibold">App Store</div>
+                    </div>
+                  </a>
+                  <a 
+                    href="#" 
+                    className="inline-flex items-center gap-3 bg-black hover:bg-black/80 text-white px-6 py-3 rounded-xl transition-all hover:scale-105"
+                  >
+                    <Icon name="Smartphone" size={28} />
+                    <div className="text-left">
+                      <div className="text-xs">Доступно в</div>
+                      <div className="text-lg font-semibold">Google Play</div>
+                    </div>
+                  </a>
+                </div>
               </div>
             </CardContent>
           </Card>
