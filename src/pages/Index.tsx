@@ -79,29 +79,29 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-orange-50/30 to-blue-50/30">
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 border-b">
+    <div className="min-h-screen bg-gradient-to-b from-red-600 via-red-500 to-red-700">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-red-900/90 border-b border-red-800">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
               <Icon name="Sunrise" className="text-white" size={24} />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <span className="text-2xl font-bold text-white">
               Заря
             </span>
           </div>
           <nav className="hidden md:flex gap-8">
-            <a href="#order" className="text-foreground hover:text-primary transition-colors font-medium">
+            <a href="#order" className="text-white hover:text-yellow-300 transition-colors font-medium">
               Заказать
             </a>
-            <a href="#tariffs" className="text-foreground hover:text-primary transition-colors font-medium">
+            <a href="#tariffs" className="text-white hover:text-yellow-300 transition-colors font-medium">
               Тарифы
             </a>
-            <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium">
+            <a href="#about" className="text-white hover:text-yellow-300 transition-colors font-medium">
               О нас
             </a>
           </nav>
-          <Button className="hidden md:flex gap-2">
+          <Button className="hidden md:flex gap-2 bg-white text-red-600 hover:bg-yellow-300">
             <Icon name="Phone" size={18} />
             +7 (978) 123-45-67
           </Button>
@@ -112,16 +112,16 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div className="space-y-6 animate-fade-in">
-              <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-1">
+              <Badge className="bg-white/20 text-white border-white/40 px-4 py-1">
                 🚀 Такси №1 в Евпатории
               </Badge>
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight text-white">
                 Быстрое такси
-                <span className="block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
                   по всему городу
                 </span>
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl text-white/90">
                 Комфортные поездки с заботой о вас. Работаем 24/7 для вашего удобства.
               </p>
               
